@@ -14,7 +14,7 @@ object Lab01 extends App{
   val allItemsRaiting = for ((k,v) <- itemsRaiting) yield (k, v.groupBy(_._2).mapValues(_.size)) //second group by
   val totalRaitings = (allItemsRaiting toList) flatMap(_._2)
   val total = totalRaitings groupBy(_._1) mapValues(_.map(_._2).sum) //third group by
-  val hist = Histogram(orderBy(allItemsRaiting.get(64).get), orderBy(total))
-  new PrintWriter("lab01.json") { write(hist.asJson.toString); close }
+  val hist = Histogram(orderBy(allItemsRaiting(64)), orderBy(total))
+  new PrintWriter("lab01.json") { write(hist.asJson.toString); close() }
 }
 
